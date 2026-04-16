@@ -33,7 +33,7 @@ def charge_fichier(fichier):
         while i < len(lignes):
             ligne = lignes[i]
             if ligne.startswith('init:'): # Etat Initial
-                etat_init = ligne.split(':')[1].strip()
+                etat_init = ligne.split(':')[1].strip() # etat_init = q0
             elif ligne.startswith('accept:'): # Etat Accept
                 accept_s = ligne.split(':')[1].strip()
 
@@ -43,7 +43,7 @@ def charge_fichier(fichier):
                 # Ligne 1
                 parts_L1 = ligne.split(',')
                 etat_courant = parts_L1[0]
-                symboles_lus = tuple(parts_L1[1:])
+                symboles_lus = tuple(parts_L1[1:]) # Prend tous sauf le premier élement de parts_L1
             
                 nb_rubans = len(symboles_lus)
 
@@ -130,4 +130,35 @@ def Un_pas_de_Calcul(machine):
     nouvelle_config = machine.configuration
     return nouvelle_config
 
+# Question 4 : 
+def Execution_complete(machine,entrée):
 
+    Configuration_Initiale(machine,entrée)
+
+    while True: 
+        if machine.configuration.state == machine.F:
+            return "ACCEPTER"
+        retour = Un_pas_de_Calcul(machine)
+        
+        if retour is None:
+            return "REJETER"
+
+# Question 5 : 
+        
+def Configuration_Machine(machine,entrée):
+    Configuration_Initiale(machine,entrée)
+
+    while True:
+        print(machine.configuration.ruban) 
+        print(machine.configuration.tete) 
+        print(machine.configuration.state) 
+
+        if machine.configuration.state == machine.F:
+            return "ACCEPTER"
+        retour = Un_pas_de_Calcul(machine)
+        
+        if retour is None:
+            return "REJETER"
+
+# Question 6 :
+        

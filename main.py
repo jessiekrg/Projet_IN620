@@ -65,7 +65,12 @@ def main():
         print()
 
     if question == "q6":
-        print()
+        nom_fichier = "fonction2.txt"  
+        mot = "11#111#111"
+        machine = charge_fichier(nom_fichier) 
+
+        retour = Execution_complete(machine,mot)
+        print(retour)
     
     if question == "q7":
         print()
