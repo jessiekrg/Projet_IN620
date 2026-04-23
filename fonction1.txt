@@ -1,109 +1,62 @@
 init: q0
-accept: accept
+accept: q_accept
 
 q0,1,_
-qo,_,1,>,>
+q0,_,1,>,>
 
 q0,0,_
-qo,_,0,>,>
+q0,_,0,>,>
 
 q0,#,_
-q1,_,_,>,-
+qright,_,_,>,-
 
-q1,1,_
-q1,1,_,>,-
+qright,1,_
+qright,1,_,>,-
 
-q1,0,_
-q1,0,_,>,-
+qright,0,_
+qright,0,_,>,-
 
-q1,_,_
-q2,_,_,<,<
+qright,_,_
+qleft,_,_,<,<
 
-q2,1,0
-q_accepter,1,0,<,<
+qleft,0,0
+qleft,0,0,<,<
 
-q2,0,1
-q_refuser,0,1,<,<
+qleft,0,1
+qleft,0,1,<,<
 
-q2,1,1
-q_égaux,1,1,<,<
+qleft,1,0
+qleft,1,0,<,<
 
-q2,0,0
-q_égaux,0,0,<,<
+qleft,1,1
+qleft,1,1,<,<
 
-q_accepter,1,0
-q_accepter,1,0,<,<
+qleft,0,_
+q_accept,0,_,-,-
 
-q_accepter,1,_
-accept,1,_,-,-
+qleft,1,_
+q_accept,1,_,-,-
 
-q_accepter,0,_
-accept,0,_,-,-
+qleft,_,_
+qtest,_,_,>,>
 
-q_accepter,_,_
-accept,_,_,-,-
+qtest,0,0
+qtest,0,0,>,>
 
-q_accepter,1,1
-q_égaux,1,1,<,<
+qtest,1,1
+qtest,1,1,>,>
 
-q_accepter,0,0
-q_égaux,0,0,<,<
+qtest,1,0
+q_accept,1,0,-,-
 
-q_accepter,0,1
-q_refuser,0,1,<,<
+qtest,_,_
+loop,_,_,-,-
 
-q_accepter,_,0
-loop,_,0,-,-
+qtest,0,1
+loop,0,1,-,-
 
-q_accepter,_,1
-loop,_,1,-,-
-
-q_égaux,1,1
-q_égaux,1,1,<,<
-
-q_égaux,1,0
-q_accepter,1,0,<,<
-
-q_égaux,0,1
-q_refuser,0,1,<,<
-
-q_égaux,_,_
-loop,_,_,<,<
-
-q_égaux,_,0
-loop,_,0,<,<
-
-q_égaux,_,1
-loop,_,1,<,<
-
-q_refuser,0,1
-q_refuser,0,1,<,<
-
-q_refuser,1,0
-q_accepter,1,0,<,<
-
-q_refuser,1,1
-q_égaux,1,1,<,<
-
-q_refuser,0,0
-q_égaux,0,0,<,<
-
-q_refuser,_,_
-loop,_,_,<,<
-
-q_refuser,_,0
-loop,_,0,<,<
-
-q_refuser,_,1
-loop,_,1,<,<,
+loop,0,1
+loop,0,1,-,-
 
 loop,_,_
-loop,_,_,<,<
-
-loop,_,0
-loop,_,0,<,<
-
-loop,_,1
-loop,_,1,<,<
-
-
+loop,_,_,-,-
