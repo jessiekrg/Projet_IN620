@@ -13,7 +13,6 @@
 // qaccept - accepting state |
 //---------------------------|
 
-name: Binary numbers divisible by 3
 init: q0
 accept: qAccept
 

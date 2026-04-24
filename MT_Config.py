@@ -13,6 +13,14 @@ class MT:
         self.transitions = transitions # Dictionnaire { (etat courant , indice du symbole lu) : (etat suivant,)}
         self.configuration = None # Pour Q3
 
+class MT_Uni:
+    def __init__(self,dic_etat,cpt,resultat):
+        self.dic_etat = {}
+        self.cpt = 2
+        self.resultat = []
+
+
+
 
 # Q2 Partie 1
 def charge_fichier(fichier):
@@ -140,8 +148,7 @@ def Execution_complete(machine,entrée):
             return "ACCEPTER"
         retour = Un_pas_de_Calcul(machine)
         
-        if retour is None:
-            return "REJETER"
+
 
 # Question 5 : 
         
@@ -158,7 +165,149 @@ def Configuration_Machine(machine,entrée):
         retour = Un_pas_de_Calcul(machine)
         
         if retour is None:
-            return "REJETER"
+            return None
 
-# Question 6 :
+# Question 7
+        
+def Codage(fichier):
+    dic_etat = {}
+    cpt = 2
+    resultat = []
+    with open(fichier, 'r') as f:
+        lignes = [l.strip() for l in f if l.strip() and not l.strip().startswith('//')]
+
+        i = 0
+        while i < len(lignes):
+            ligne = lignes[i]
+            if ligne.startswith('init:'): # Etat Initial
+                etat_init = ligne.split(':')[1].strip() # etat_init = q0
+                dic_etat[etat_init] = "0"
+                i+=1 #On passe à la ligne suivante
+
+            elif ligne.startswith('accept:'): # Etat Accept`
+                accept_s = ligne.split(':')[1].strip()
+                dic_etat[accept_s] = "1"
+                i+=1 #On passe à la ligne suivante
+
+            elif ',' in ligne:
+                parts_L1 = ligne.split(',')
+                etat_courant = parts_L1[0].strip()
+                symbole_lu = parts_L1[1].strip()
+
+                if symbole_lu == "_":
+                    symbole_lu = "□"
+
+                # Ajout dans le dictionnaire état Ligne 1
+                if etat_courant not in dic_etat:
+                    etat_binaire = bin(cpt)[2:]
+                    dic_etat[etat_courant] = etat_binaire
+                    cpt += 1
+
+                i+= 1
+
+                # Ajout dans le dictionnaire état Ligne 1
+                ligne = lignes[i]
+                parts_L2 = ligne.split(',')
+                etat_suivant = parts_L2[0].strip()
+                symbole_ecrit = parts_L2[1].strip()
+                direction = parts_L2[2].strip()
+        
+                if symbole_ecrit == "_":
+                    symbole_ecrit = "□"
+
+                if etat_suivant not in dic_etat:
+                    etat_binaire = bin(cpt)[2:]
+                    dic_etat[etat_suivant] = etat_binaire
+                    cpt += 1
+            
+                code_etat_courant = dic_etat[etat_courant]
+                code_etat_suivant = dic_etat[etat_suivant]
+
+                resultat.extend([code_etat_courant,symbole_lu,symbole_ecrit,direction,code_etat_suivant]) #.extend() pour pouvoir ajouter plusieurs élements
+
+                i+=1 
+    
+    chaine_finale = "|".join(resultat)
+
+    return chaine_finale
+
+# Question 8
+
+def Codage_Binaire(fichier):
+    tbl_binaire = []
+    codage = Codage(fichier)
+
+    d_correspondance = {"0" : "000", "1" : "001", "|" : "011", "□" : "111", "#" : "010", "<" : "100", ">" : "101", "-" : "110"}
+
+
+    for i in codage:
+        tbl_binaire.append(d_correspondance[i])
+
+    chaine_binaire = "".join(tbl_binaire)
+    valeur_entiere = int(chaine_binaire, 2)
+
+    return machine_u,chaine_binaire,valeur_entiere
+
+# Question 9
+
+def Machine_Turing(fichier,entree):
+
+    ruban1 = Codage(fichier)
+    ruban2 = list(entree) # entree est une chaine de caractère, on utilise une liste pour pouvoir la modifier
+    etat_actuel = "0"
+    cpt_ruban2 = 0
+    tbl_ruban1 = ruban1.split('|')
+
+    transition_trouvee = False
+
+    while etat_actuel != "1" :
+        
+        symbole_lu = ruban2[cpt_ruban2]
+
+        for i in range(0,len(tbl_ruban1),5):
+            if tbl_ruban1[i] == etat_actuel and tbl_ruban1[i+1] == symbole_lu:
+                ecrit = tbl_ruban1[i+2]
+                direction = tbl_ruban1[i+3]
+                etat_suivant = tbl_ruban1[i+4]
+                transition_trouvee = True
+                break
+
+        if not transition_trouvee:
+            print("Erreur : La transition n'a pas été trouvé")
+            break
+
+        ruban2[cpt_ruban2] = ecrit
+
+        if direction == ">":
+            cpt_ruban2 += 1
+            if cpt_ruban2 == len(ruban2):
+                ruban2.append("□")
+        if direction == "<":
+            cpt_ruban2 -= 1
+            if cpt_ruban2 < 0 :
+                ruban2.insert(0, "□")
+                cpt_ruban2 = 0
+
+        etat_actuel = etat_suivant
+    
+    return "".join(ruban2)
+
+
+
+
+                   
+
+
+            
+
+        
+
+
+
+      
+    
+
+
+
+    
         

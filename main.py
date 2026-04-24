@@ -64,16 +64,32 @@ def main():
     if question == "q5":
         print()
 
-    if question == "q6":
-        nom_fichier = "fonction2.txt"  
-        mot = "11#111#111"
+    if question == "q6_1":
+        nom_fichier = "fonction1.txt"
+        mot = "10#100"
         machine = charge_fichier(nom_fichier) 
 
         retour = Execution_complete(machine,mot)
         print(retour)
-    
-    if question == "q7":
-        print()
+
+    if question == "q8_1":
+        nom_fichier = "test.txt"
+
+        codage,codage_binaire,entier = Codage_Binaire(nom_fichier)
+        print("Codage : ", codage)
+        print("Codage binaire : ", codage_binaire)
+        print("Interprétation entier : ", entier )
+
+    if question == "q9":
+        nom_fichier = "test_q9.txt"
+        entree = "110011"
+
+        sortie = Machine_Turing(nom_fichier,entree)
+
+        print("Sortie : ", sortie)
+
+
+
 
 
 if __name__ == "__main__":

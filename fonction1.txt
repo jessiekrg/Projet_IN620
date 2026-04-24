@@ -1,75 +1,62 @@
 init: q0
-accept: accept
+accept: q_accept
 
-q0,0
-q1,_,>
-q0,1
-q2,_,>
-q0,_
-q6,_,>s
+q0,1,_
+q0,_,1,>,>
 
-q1,0
-q1,0,>
-q1,1
-q1,1,>
-q1,#
-q3,#,>
+q0,0,_
+q0,_,0,>,>
 
-q3,_
-q3,_,>
-q3,1
-accept,1,-    
-q3,0
-q5,_,<         
-Loop,_,-       
+q0,#,_
+qright,_,_,>,-
 
-q2,0
-q2,0,>
-q2,1
-q2,1,>
-q2,_
-q4,_,>
+qright,1,_
+qright,1,_,>,-
 
-q4,_
-q4,_,>
-q4,0
-Loop,0,-      
-q4,1
-q5,_,<         
-q4,_
-Loop,_,-     
+qright,0,_
+qright,0,_,>,-
 
-q5,0
-q5,0,<
-q5,1
-q5,1,<
-q5,_
-q5,_,<
-q5,_
-q0,_,>
+qright,_,_
+qleft,_,_,<,<
 
-q6,0
-q6,0,>
-q6,1
-q6,1,>
-q6,_
-q7,_,>
+qleft,0,0
+qleft,0,0,<,<
 
-q7,_
-q7,_,>
-q7,0
-accept,0,-    
-q7,1
-accept,1,-    
-q7,_
-Loop,#,-      
+qleft,0,1
+qleft,0,1,<,<
 
-Loop,0
-Loop,0,-
-Loop,1
-Loop,1,-
-Loop,_
-Loop,_,-
-Loop,_
-Loop,_, -
+qleft,1,0
+qleft,1,0,<,<
 
+qleft,1,1
+qleft,1,1,<,<
+
+qleft,0,_
+q_accept,0,_,-,-
+
+qleft,1,_
+q_accept,1,_,-,-
+
+qleft,_,_
+qtest,_,_,>,>
+
+qtest,0,0
+qtest,0,0,>,>
+
+qtest,1,1
+qtest,1,1,>,>
+
+qtest,1,0
+q_accept,1,0,-,-
+
+qtest,_,_
+loop,_,_,-,-
+
+qtest,0,1
+loop,0,1,-,-
+
+loop,0,1
+loop,0,1,-,-
+
+loop,_,_
+loop,_,_,-,-
