@@ -13,14 +13,6 @@ class MT:
         self.transitions = transitions # Dictionnaire { (etat courant , indice du symbole lu) : (etat suivant,)}
         self.configuration = None # Pour Q3
 
-class MT_Uni:
-    def __init__(self,dic_etat,cpt,resultat):
-        self.dic_etat = {}
-        self.cpt = 2
-        self.resultat = []
-
-
-
 
 # Q2 Partie 1
 def charge_fichier(fichier):
