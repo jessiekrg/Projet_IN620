@@ -89,12 +89,18 @@ def main():
         print("Interprétation entier : ", entier )
 
     if question == "q9":
+        # MT qui change les 0 en 1 et les 1 en 0
         nom_fichier = "test_q9.txt"
-        entree = "110011"
+        x = "110011"
+        codage = Codage_Machine(nom_fichier)
 
-        sortie = Machine_Turing(nom_fichier,entree)
+        entree = codage + "#" + x
 
-        print("Sortie : ", sortie)
+        sortie = Machine_Turing(entree)
+
+        print("Codage Machine : ",codage)
+        print("Mot entrée : ",x)
+        print("Mot sortie : ", sortie)
 
 
 
