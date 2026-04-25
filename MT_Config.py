@@ -170,9 +170,9 @@ def Configuration_Machine(machine,entrée):
 # Question 7
         
 def Codage(fichier):
-    dic_etat = {}
+    dic_etat = {} # on attribut pour chaque état de la MT un entier à partir du cpt
     cpt = 2
-    resultat = []
+    resultat = [] #tableau qui regroupe toutes les transitions de la MT
     with open(fichier, 'r') as f:
         lignes = [l.strip() for l in f if l.strip() and not l.strip().startswith('//')]
 
@@ -199,7 +199,7 @@ def Codage(fichier):
 
                 # Ajout dans le dictionnaire état Ligne 1
                 if etat_courant not in dic_etat:
-                    etat_binaire = bin(cpt)[2:]
+                    etat_binaire = bin(cpt)[2:] # cpt décimal --> en binaire
                     dic_etat[etat_courant] = etat_binaire
                     cpt += 1
 
@@ -237,6 +237,7 @@ def Codage_Binaire(fichier):
     tbl_binaire = []
     codage = Codage(fichier)
 
+    # dictionnaire de correspondance pour que chaque caractère soit codé en un nombre a trois bits
     d_correspondance = {"0" : "000", "1" : "001", "|" : "011", "□" : "111", "#" : "010", "<" : "100", ">" : "101", "-" : "110"}
 
 
@@ -254,9 +255,9 @@ def Machine_Turing(fichier,entree):
 
     ruban1 = Codage(fichier)
     ruban2 = list(entree) # entree est une chaine de caractère, on utilise une liste pour pouvoir la modifier
-    etat_actuel = "0"
+    etat_actuel = "0" # ruban 3
     cpt_ruban2 = 0
-    tbl_ruban1 = ruban1.split('|')
+    tbl_ruban1 = ruban1.split('|') # on crée un tableau à partir du ruban 1 pour pouvoir parcourir le ruban
 
     transition_trouvee = False
 
