@@ -294,6 +294,65 @@ def Machine_Turing(fichier,entree):
     return "".join(ruban2)
 
 
+# Question 10
+
+
+def Machine_Turing_Universelle_Compteur(chaine): # Format de l'entrée serait : < M >#x#n 
+    
+    Parties = chaine.split('#')
+
+    # Je divise l'entrée en trois disctincte parties : le code de la MT, l'entrée, le nombre d'étapes durant laquelle la MTU simule 
+    M_Ruban1 = Parties[0].split("|") 
+    x_Ruban2 = list(Parties[1])
+    Etat_Ruban_3 = "0"
+    n_Ruban4 = int(Parties[2]) 
+
+
+    etat_actuel = Etat_Ruban_3
+    position_tete_lecture = 0
+    compteur_n = 0
+    transition_trouvee = False
+
+    while (etat_actuel != "1") and (compteur_n < n_Ruban4):
+
+        transition_trouvee = False
+        symbole_lu = x_Ruban2[position_tete_lecture] 
+
+        for i in range(0,len(M_Ruban1),5):
+
+            if (M_Ruban1[i] == etat_actuel) and (M_Ruban1[i+1] == symbole_lu): # Si on trouve un correspondance de l'état actuel , symboles 
+                # Récupération de ce qui doit être ecrits et le mouvement de la tête
+                ecrit = M_Ruban1[i+2]
+                direction = M_Ruban1[i+3]
+
+                etat_actuel = M_Ruban1[i+4] # Mise à jour de l'état courant par l'état suivant 
+                transition_trouvee = True 
+
+                # Ecriture 
+                x_Ruban2[position_tete_lecture] = ecrit
+
+                # Mouvement de la tête de lecture
+                if direction == ">":
+                    position_tete_lecture += 1
+                    if position_tete_lecture == len(x_Ruban2):
+                        x_Ruban2.append("□")
+            
+                if direction == "<":
+                    position_tete_lecture -= 1
+                    if position_tete_lecture < 0 :
+                        x_Ruban2.insert(0, "□")
+                        position_tete_lecture = 0
+                break
+            
+        if not transition_trouvee:
+            print("Erreur : La transition n'a pas été trouvé")
+            break
+
+        
+        compteur_n += 1
+    
+    return "".join(x_Ruban2)
+
 
 
                    
