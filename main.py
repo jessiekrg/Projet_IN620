@@ -65,7 +65,7 @@ def main():
         print()
 
     if question == "q6_1":
-        nom_fichier = "fonction1.txt"
+        nom_fichier = "MT1.txt"
         mot = "10#100"
         machine = charge_fichier(nom_fichier) 
 
@@ -73,8 +73,16 @@ def main():
         print(retour)
 
     if question == "q6_2":
-        nom_fichier = "fonction2.txt"
-        mot = "10#100#10"
+        nom_fichier = "MT2.txt"
+        mot = "1000#100#10#1000"
+        machine = charge_fichier(nom_fichier) 
+
+        retour = Execution_complete(machine,mot)
+        print(retour)
+
+    if question == "q6_3":
+        nom_fichier = "MT3.txt"
+        mot = "11#111"
         machine = charge_fichier(nom_fichier) 
 
         retour = Execution_complete(machine,mot)
