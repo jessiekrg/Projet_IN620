@@ -186,9 +186,7 @@ def Codage_Machine(fichier):
                 etat_courant = parts_L1[0].strip()
                 symbole_lu = parts_L1[1].strip()
 
-                if symbole_lu == "_":
-                    symbole_lu = "□"
-
+                
                 # Ajout dans le dictionnaire état Ligne 1
                 if etat_courant not in dic_etat:
                     etat_binaire = bin(cpt)[2:] # cpt décimal --> en binaire
@@ -203,9 +201,7 @@ def Codage_Machine(fichier):
                 etat_suivant = parts_L2[0].strip()
                 symbole_ecrit = parts_L2[1].strip()
                 direction = parts_L2[2].strip()
-        
-                if symbole_ecrit == "_":
-                    symbole_ecrit = "□"
+    
 
                 if etat_suivant not in dic_etat:
                     etat_binaire = bin(cpt)[2:]
@@ -227,7 +223,7 @@ def Codage_Machine(fichier):
 
 def Codage_Binaire(fichier):
     tbl_binaire = []
-    codage = Codage(fichier)
+    codage = Codage_Machine(fichier)
 
     # dictionnaire de correspondance pour que chaque caractère soit codé en un nombre a trois bits
     d_correspondance = {"0" : "000", "1" : "001", "|" : "011", "□" : "111", "#" : "010", "<" : "100", ">" : "101", "-" : "110"}

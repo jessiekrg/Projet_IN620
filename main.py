@@ -98,17 +98,19 @@ def main():
 
     if question == "q9":
         # MT qui change les 0 en 1 et les 1 en 0
-        nom_fichier = "test_q9.txt"
+        nom_fichier_uni = "test_q9.txt"
+        nom_fichier = "MT_question9.txt"
         x = "110011"
-        codage = Codage_Machine(nom_fichier)
+        codage = Codage_Machine(nom_fichier_uni)
 
         entree = codage + "#" + x
+        machine = charge_fichier(nom_fichier) 
 
-        sortie = Machine_Turing(entree)
+        config_finale = Execution_complete(machine,entree)
 
-        print("Codage Machine : ",codage)
-        print("Mot entrée : ",x)
-        print("Mot sortie : ", sortie)
+        ruban_resultat = config_finale.rubans[1]
+
+        print(ruban_resultat)
 
 
 

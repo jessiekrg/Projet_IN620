@@ -1,0 +1,567 @@
+init: q0
+accept: accept
+
+// La je vais jusqu'au # pour pouvoir recopier ce qu'il y'a après dans le ruban 2
+
+q0,|,_,_
+q0,|,_,_,>,-,-
+
+q0,<,_,_
+q0,<,_,_,>,-,-
+
+q0,>,_,_
+q0,>,_,_,>,-,-
+
+q0,1,_,_
+q0,1,_,_,>,-,-
+
+q0,0,_,_
+q0,0,_,_,>,-,-
+
+q0,#,_,_
+q1,_,_,_,>,-,-
+
+// On recopie chaque élement du ruban 1 dans le ruban 2 et on supprime les élements à partir # du ruban 1
+q1,0,_,_
+q1,_,0,_,>,>,-
+
+q1,1,_,_
+q1,_,1,_,>,>,-
+
+q1,_,_,_
+q2,_,_,_,<,-,-
+
+// On retourne au début du ruban 1
+
+q2,|,_,_
+q2,|,_,_,<,-,-
+
+q2,<,_,_
+q2,<,_,_,<,-,-
+
+q2,>,_,_
+q2,>,_,_,<,-,-
+
+q2,1,_,_
+q2,1,_,_,<,-,-
+
+q2,0,_,_
+q2,0,_,_,<,-,-
+
+// On retourne au début du ruban 2
+
+q2,_,_,_
+q3,_,_,_,-,<,-
+
+q3,_,0,_
+q3,_,0,_,-,<,-
+
+q3,_,1,_
+q3,_,1,_,-,<,-
+
+// On avance tête du ruban 1 et ruban 2 : La tête du ruban 2 sera sur son premier caractère
+// Ruban 3 : □ --> 0 ( = l'état initial de <M>)
+
+q3,_,_,_
+q4,_,_,0,>,>,-
+
+// On vérifie il y'a correspondance bit par bit entre état courant du ruban 1 et etat du ruban 3
+
+q4,0,0,0
+q4,0,0,0,>,-,>
+
+q4,1,0,1
+q4,1,0,1,>,-,>
+
+q4,0,1,0
+q4,0,1,0,>,-,>
+
+q4,1,1,1
+q4,1,1,1,>,-,>
+
+q4, 0, _, 0
+q4, 0, _, 0, >, -, >
+
+q4, 1, _, 1
+q4, 1, _, 1, >, -, >
+
+// On avance la tete de lecture du ruban 1 vers le symbole lu
+
+q4,|,1,_
+q5,|,1,_,>,-,-
+
+q4,|,0,_
+q5,|,0,_,>,-,-
+
+
+
+// On va mtn faire la comparaison entre le symbole lu du ruban 1 avec celui sur la tete du ruban 2
+
+q5,0,0,_
+q6,0,0,_,>,-,-
+
+q5,1,1,_
+q6,1,1,_,>,-,-
+
+q5, _, _, _
+q6, _, _, _, >, -, -
+
+
+
+// La tete de lecture du ruban 1 est sur le symbole à écrire : il faut que symbole sur la tete du ruban 2 soit égale à symbole_écrit ruban 1
+
+q6,|,0,_
+q7,|,0,_,>,-,-
+
+q6,|,1,_
+q7,|,1,_,>,-,-
+
+// PAS DE MODIFICATION : 
+
+q7,0,0,_
+q8,0,0,_,>,-,-
+
+q7,1,1,_
+q8,1,1,_,>,-,-
+
+// MODIFICATION
+
+q7,0,1,_
+q8,0,0,_,>,-,-
+
+q7,1,0,_
+q8,1,1,_,>,-,-
+
+// symbole_écrit = □
+
+q7,_,1,_
+q8,_,_,_,>,-,-
+
+q7,_,0,_
+q8,_,_,_,>,-,-
+
+
+// La tete de lecture du ruban 1 est sur la direction : on va modifier la position de la tete de lecture du ruban 2 en focntion de ça
+
+q8,|,0,_
+q9,|,0,_,>,-,-
+
+q8,|,1,_
+q9,|,1,_,>,-,-
+
+// PAS DE MODIFICATION DE POSITION: 
+
+q9,-,0,_
+q10,-,0,_,>,-,-
+
+q9,-,1,_
+q10,-,1,_,>,-,-
+
+// MODIFICATION
+
+q9,>,0,_
+q10,>,0,_,>,>,-
+
+q9,<,0,_
+q10,<,0,_,>,<,-
+
+q9,>,1,_
+q10,>,1,_,>,>,-
+
+q9,<,1,_
+q10,<,1,_,>,<,-
+
+// On doit mtn modifier l'état du ruban 3
+
+// 1- on supprime chaque bit ruban 3
+
+q10,|,0,_
+q11,|,0,_,-,-,<
+
+q10,|,1,_
+q11,|,1,_,-,-,<
+
+q11,|,0,1
+q11,|,0,_,-,-,<
+
+q11,|,0,0
+q11,|,0,_,-,-,<
+
+q11,|,1,1
+q11,|,1,_,-,-,<
+
+q11,|,1,0
+q11,|,1,_,-,-,<
+
+// On avance la tete du ruban pour qu'elle soit au niveau de code_etat_suivant
+
+q11,|,0,_
+q12,|,0,_,>,-,-
+
+q11,|,1,_
+q12,|,1,_,>,-,-
+
+
+// On modifie bit par bit le ruban 3 en fonction du ruban 1
+
+q12,0,0,_
+q12,0,0,0,>,-,>
+
+q12,1,0,_
+q12,1,0,1,>,-,>
+
+q12,0,1,_
+q12,0,0,0,>,-,>
+
+q12,1,1,_
+q12,1,1,1,>,-,>
+
+// On doit retourner au début ruban 1
+
+q12,_,1,_
+q13,_,1,_,<,-,-
+
+q12,_,0,_
+q13,_,0,_,<,-,-
+
+q13,|,_,_
+q13,|,_,_,<,-,-
+
+q13,<,_,_
+q13,<,_,_,<,-,-
+
+q13,>,_,_
+q13,>,_,_,<,-,-
+
+q13,1,_,_
+q13,1,_,_,<,-,-
+
+q13,0,_,_
+q13,0,_,_,<,-,-
+
+// On doit retourner au début du ruban 3
+
+q13,_,1,_
+q14,_,1,_,-,-,<
+
+q13,_,0,_
+q14,_,0,_,-,-,<
+
+q14,_,0,1
+q14,_,0,1,-,-,<
+
+q14,_,0,0
+q14,_,0,0,-,-,<
+
+q14,_,1,1
+q14,_,1,1,-,-,<
+
+q14,_,1,0
+q14,_,1,0,-,-,<
+
+// Vérifier si l'état dans ruban est 1 ( = etat final)
+
+q14, _, 0, _
+q_test_final, _, 0, _, -, -, >
+
+q14, _, 1, _
+q_test_final, _, 1, _, -, -, >
+
+// si premier bit ruban 3 = 0 on peut continuer
+
+q_test_final, _, 1, 0
+q_back_to_q4, _, 1, 0, -, -, <
+
+q_test_final, _, 0, 0
+q_back_to_q4, _, 0, 0, -, -, <
+
+// sinon on vérifie taille etat
+
+q_test_final, _, 0, 1
+q_taille, _, 0, 1, -, -, >
+
+q_test_final, _, 1, 1
+q_taille, _, 1, 1, -, -, >
+
+q_test_final, _, 0, 0
+q_back_to_q4, _, 0, 1, -, -, <
+
+q_test_final, _, 1, 0
+q_back_to_q4, _, 1, 1, -, -, <
+
+
+// Si c'est vide, on accepte
+q_taille, _, 1,_
+accept,_,1,_,-,-,-
+
+q_taille, _, 0,_
+accept,_,0,_,-,-,-
+
+// Sinon : y'a soit 0 ou soit 1
+
+q_taille, _, 1, 0
+q_back_to_q4, _, *, 0, -, -, <
+
+q_taille, _, 1, 1
+q_back_to_q4, _, *, 1, -, -, <
+
+q_taille, _, 0, 0
+q_back_to_q4, _, *, 0, -, -, <
+
+q_taille, _, 0, 1
+q_back_to_q4, _, *, 1, -, -, <
+
+// On retourne au début ruban 3
+
+q_back_to_q4,_,1,1
+q_back_to_q4,_,1,1,-,-,<
+
+q_back_to_q4,_,1,0
+q_back_to_q4,_,1,0,-,-,<
+
+q_back_to_q4,_,0,1
+q_back_to_q4,_,0,1,-,-,<
+
+q_back_to_q4,_,0,0
+q_back_to_q4,_,0,0,-,-,<
+
+
+// Et on recommance ...
+
+q_back_to_q4,_,1,_
+q4,_,1,_,>,-,>
+
+q_back_to_q4,_,0,_
+q4,_,0,_,>,-,>
+
+// Si état courant ≠ état ruban 3 on skip
+
+q4,0,0,1
+q15,0,0,1,-,-,>
+
+q4,0,1,1
+q15,0,1,1,-,-,>
+
+q4,1,0,0
+q15,0,0,1,-,-,>
+
+q4,1,1,0
+q15,0,1,1,-,-,>
+
+// Si état courant R1 plus court
+
+q4,|,1,1
+q15,|,1,1,-,-,>
+
+q4,|,1,0
+q15,|,1,0,-,-,>
+
+q4,|,0,1
+q15,|,1,1,-,-,>
+
+q4,|,0,0
+q15,|,1,0,-,-,>
+
+q15,|,1,_
+qskip1,|,1,_,-,-,-
+
+q15,|,0,_
+qskip1,|,0,_,-,-,-
+
+// Si état courant R3 plus court :
+
+q4,1,1,_
+q15,1,1,_,-,-,-
+
+q4,0,1,_
+q15,0,1,_,-,-,-
+
+q4,1,0,_
+q15,1,1,_,-,-,-
+
+q4,0,0,_
+q15,0,1,_,-,-,-
+
+// 1- On va à la fin du ruban 3 (comme ça on aura moins de transition à faire)
+
+q15,0,0,1
+q15,0,0,1,-,-,>
+
+q15,1,0,0
+q15,1,0,0,-,-,>
+
+q15,0,0,0
+q15,0,0,0,-,-,>
+
+q15,1,0,1
+q15,1,0,1,-,-,>
+
+q15,0,1,1
+q15,0,1,1,-,-,>
+
+q15,1,1,0
+q15,1,1,0,-,-,>
+
+q15,0,1,0
+q15,0,1,0,-,-,>
+
+q15,1,1,1
+q15,1,1,1,-,-,>
+
+q15,0,0,_
+qskip1,0,0,_,>,-,-
+
+q15,1,0,_
+qskip1,1,0,_,>,-,-
+
+q15,0,1,_
+qskip1,0,1,_,>,-,-
+
+q15,1,1,_
+qskip1,1,1,_,>,-,-
+
+// qskip1 : On avance jusqu'au premier | :
+
+qskip1,0,0,_
+qskip1,0,0,_,>,-,-
+
+qskip1,1,0,_
+qskip1,1,0,_,>,-,-
+
+qskip1,0,1,_
+qskip1,0,1,_,>,-,-
+
+qskip1,1,1,_
+qskip1,1,1,_,>,-,-
+
+qskip1,|,1,_
+qskip2,|,1,_,>,-,-
+
+qskip1,|,0,_
+qskip2,|,0,_,>,-,-
+
+// On avance jusqu'au deuxième | :
+
+qskip2,0,0,_
+qskip2,0,0,_,>,-,-
+
+qskip2,1,0,_
+qskip2,1,0,_,>,-,-
+
+qskip2,0,1,_
+qskip2,0,1,_,>,-,-
+
+qskip2,1,1,_
+qskip2,1,1,_,>,-,-
+
+qskip2,|,1,_
+qskip3,|,1,_,>,-,-
+
+qskip2,|,0,_
+qskip3,|,0,_,>,-,-
+
+// On avance jusqu'au troisième | :
+
+qskip3,0,0,_
+qskip3,0,0,_,>,-,-
+
+qskip3,1,0,_
+qskip3,1,0,_,>,-,-
+
+qskip3,0,1,_
+qskip3,0,1,_,>,-,-
+
+qskip3,1,1,_
+qskip3,1,1,_,>,-,-
+
+qskip3,|,1,_
+qskip4,|,1,_,>,-,-
+
+qskip3,|,0,_
+qskip4,|,0,_,>,-,-
+
+// On avance jusqu'au quatrième | :
+
+qskip4,>,0,_
+qskip4,>,0,_,>,-,-
+
+qskip4,<,0,_
+qskip4,<,0,_,>,-,-
+
+qskip4,-,0,_
+qskip4,-,0,_,>,-,-
+
+qskip4,>,1,_
+qskip4,>,1,_,>,-,-
+
+qskip4,<,1,_
+qskip4,<,1,_,>,-,-
+
+qskip4,-,1,_
+qskip4,-,1,_,>,-,-
+
+qskip4,|,1,_
+qskip5,|,1,_,>,-,-
+
+qskip4,|,0,_
+qskip5,|,0,_,>,-,-
+
+
+// On avance jusqu'au cinquième | :
+
+qskip5,0,0,_
+qskip5,0,0,_,>,-,-
+
+qskip5,1,0,_
+qskip5,1,0,_,>,-,-
+
+qskip5,0,1,_
+qskip5,0,1,_,>,-,-
+
+qskip5,1,1,_
+qskip5,1,1,_,>,-,-
+
+qskip5,|,1,_
+qnext,|,1,_,-,-,<
+
+qskip5,|,0,_
+qnext,|,0,_,-,-,<
+
+// On retourne au début du ruban 3 : 
+
+qnext,|,1,0
+qnext,|,1,0,-,-,<
+
+qnext,|,1,1
+qnext,|,1,1,-,-,<
+
+qnext,|,0,0
+qnext,|,0,0,-,-,<
+
+qnext,|,0,1
+qnext,|,0,1,-,-,<
+
+// On essaye avec un autre état courant
+
+qnext,|,1,_
+q4,|,1,_,>,-,>
+
+qnext,|,0,_
+q4,|,0,_,>,-,>
+
+
+// Si symbole lu ≠ tete lecture ruban 2: On peut direcetment aller à qkip2
+
+q5,0,1,_
+qskip2,0,1,_,>,-,-
+
+q5,1,0,_
+qskip2,1,0,_,>,-,-
+
+
+
+
+
+
+
+
