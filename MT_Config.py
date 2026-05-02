@@ -19,10 +19,8 @@ def charge_fichier(fichier):
     """ Lit ficher"""
     # Initialisation 
     nb_rubans = 1 
-    etats = []
     etat_init = "" 
     accept_s = ""
-    reject_s = ""
     transitions = {}
 
     with open(fichier, 'r') as f:
@@ -80,7 +78,7 @@ def Configuration_Initiale(machine,entrée):
     machine.configuration = Ma_Configuration # Pour Q3
     return Ma_Configuration # On retourne pour que main.py l'utilises
 
-
+# Q3 Partie 2
 def Un_pas_de_Calcul(machine):
     # Récupération de la configuration courante donc je récupère (l'état courant, symboles lus par rubans) 
     Etat_Courant = machine.configuration.state
@@ -163,7 +161,7 @@ def Configuration_Machine(machine,entrée):
     Configuration_Initiale(machine,entrée)
 
     while True:
-        print(machine.configuration.ruban) 
+        print(machine.configuration.rubans) 
         print(machine.configuration.tete) 
         print(machine.configuration.state) 
 
@@ -235,6 +233,8 @@ def Codage_Machine(fichier):
                 resultat.extend([code_etat_courant,symbole_lu,symbole_ecrit,direction,code_etat_suivant]) #.extend() pour pouvoir ajouter plusieurs élements
 
                 i+=1 
+            else :
+                i+= 1 # rajouté pour forcer le programme à ignorer les lignes non reconnues et à passer à la suivante
     
     chaine_finale = "|".join(resultat)
 
@@ -262,7 +262,8 @@ def Codage_Binaire(fichier):
 
 
 def Machine_Turing(entree): # entrée qui aura la forme < M > #x
-    
+    """Machine de Turing universelle `a trois rubans, qui prend sur son ruban d’entr ́ee
+    < M >#x et qui simule M sur x"""
     Parsing = entree.split("#")
 
     ruban1 = Parsing[0].split('|') # on crée un tableau à partir du ruban 1 pour pouvoir parcourir le ruban
