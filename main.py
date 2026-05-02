@@ -244,14 +244,32 @@ def main():
         print("\nLangage L1")
         print("L1 = { <M>#n | M s'arrête sur n en moins de n étapes }")
         print("Réponse : décidable \n")
+        print("On a construit une MTU qui simule M sur l'entrée avec un compteur à un nombre d'étape limité determiné \n Puisque n est une valeur finie notre simulation va obligatoirement s'arrêter dans un temps fini M s'est arrêtée par acceptation ou alors nombre de tours ecoulés ")
 
         print("Langage L2")
         print("L2 = { <M>#n | M s'arrête sur les mots de taille n } ")
         print("Réponse : indécidable \n")
-
+        print("Réduction au problème de l'arrêt : \n")
+        print("Supposons par l'absurde qu'un décideur D2 existe pour L2.")
+        print("On pourrait l'utiliser pour savoir si une machine M s'arrête sur un mot w")
+        print("Pour cela, on crée une machine truquée M' qui ignore son entrée")
+        print("et exécute systématiquement M sur w")
+        print("Si on donne <M'>#n à D2, D2 dira OUI si M' s'arrête sur les mots")
+        print("de taille n, ce qui équivaut à dire que M s'arrête sur w")
+        print("D2 nous donnerait la solution au problème de l'arrêt, ce qui est")
+        print("une contradiction mathématique absolue. L2 est donc indécidable\n")
         print("Langage L3")
+
+
         print("L3 = { <M>#x#y | M calcule la même chose sur les entrées x et y }")
-        print("Réponse : indécidable \n")
+        print("Réponse : indécidable \n ")
+        print("Pour savoir si M fait 'la même chose' sur x et y on va comparer")
+        print("les deux calculs, donc on doit les simuler jusqu'à leur terme.")
+        print("Si M boucle à l'infini sur l'entrée x, tout algorithme de vérification")
+        print("sera pris dans cette boucle infinie en tentant de la simuler et")
+        print("ne pourra jamais rendre de réponse.")
+        print("Puisqu'aucun algorithme ne peut garantir de répondre par OUI ou NON")
+        print("dans un temps fini à 100%, L3 est indécidable.")
 
 
 
