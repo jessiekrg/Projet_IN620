@@ -430,7 +430,6 @@ q_taille,_,1,1,-,-,>
 q_test_final,_,_,1
 q_taille,_,_,1,-,-,>
 
-
 q_test_final,_,0,0
 q_back_to_q4,_,0,0,-,-,<
 
@@ -703,8 +702,6 @@ qskip2,0,_,_,>,-,-
 
 qskip2,1,_,_
 qskip2,1,_,_,>,-,-
-
-
 
 qskip2,□,_,_
 qskip2,□,_,_,>,-,-
