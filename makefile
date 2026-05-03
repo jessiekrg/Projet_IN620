@@ -59,6 +59,6 @@ q10:
 
 q11:
 	python3 main.py q11
-
+	
 zip:
-	zip -r RE_BERROUG_Lina-KAREGA_Jessica.zip RE_BERROUG_Lina-KAREGA_Jessica
+	zip -r RE_BERROUG_Lina-KAREGA_Jessica.zip . -x "__pycache__/*" "*.git*" ".DS_Store"
