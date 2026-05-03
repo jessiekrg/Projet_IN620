@@ -61,4 +61,4 @@ q11:
 	python3 main.py q11
 
 zip:
-	zip -r XY_BERROUG_Lina-KAREGA_Jessica.zip XY_BERROUG_Lina-KAREGA_Jessicz
+	zip -r RE_BERROUG_Lina-KAREGA_Jessica.zip RE_BERROUG_Lina-KAREGA_Jessica
