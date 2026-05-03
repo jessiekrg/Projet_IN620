@@ -685,7 +685,6 @@ q17,|,_,1,_
 q17,|,_,1,_,-,-,>,-
 
 
-// Cas génériques manquants pendant le déplacement vers la fin de R3
 
 q17,0,0,0,_
 q17,0,0,0,_,-,-,>,-
