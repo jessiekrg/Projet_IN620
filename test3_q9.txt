@@ -1,11 +1,9 @@
+// input : entier en binaire
+// output : vérifie si un mot est un palindrome
+
 init: q0
 accept: accept
 
-// Machine de Turing a 1 ruban compatible avec la MTU de la question 9.
-// Alphabet utilise : 0, 1, _ uniquement.
-// Idee : on efface le premier symbole, puis on va verifier le dernier symbole restant.
-// Si les deux correspondent, on efface aussi le dernier symbole et on recommence.
-// Si ca ne correspond pas, la machine se bloque.
 
 // Chercher le premier symbole non efface a gauche
 q0,0
@@ -55,7 +53,7 @@ accept,_,-
 
 // Pas de transition q_check_1,0 : ce n'est pas un palindrome
 
-// Revenir au blanc de gauche, puis repartir sur le prochain symbole non efface
+
 q_back,0
 q_back,0,<
 

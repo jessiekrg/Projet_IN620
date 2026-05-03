@@ -92,19 +92,45 @@ def main():
         # Comparaison d’entiers : `a partir d’une entr ́ee x#y o`u x et y repr ́esentent des entiers en binaire, s’arrˆeter si x < y et boucler `a l’infini sinon
         print("\nQuestion 6_1 : Donner des machines de Turing qui r ́ealisent les fonctions suivantes et testez les avec votre simulateur")
         nom_fichier = "MT1.txt"
-        mot = "10#100"
-        print(nom_fichier, mot)
+        mot = "10#1111"
+        print("Nom fichier :", nom_fichier)
+        print("Mot :", mot)
         machine = charge_fichier(nom_fichier) 
 
         retour = Execution_complete(machine,mot)
         print(retour)
+
+        if question == "q6_1_refuser":
+            # Comparaison d’entiers : `a partir d’une entr ́ee x#y o`u x et y repr ́esentent des entiers en binaire, s’arrˆeter si x < y et boucler `a l’infini sinon
+            print("\nQuestion 6_1 : Donner des machines de Turing qui r ́ealisent les fonctions suivantes et testez les avec votre simulateur")
+            nom_fichier = "MT1.txt"
+            mot = "100000#10"
+            print("Nom fichier :", nom_fichier)
+            print("Mot :", mot)
+            machine = charge_fichier(nom_fichier) 
+
+            retour = Execution_complete(machine,mot)
+            print(retour)
 
     if question == "q6_2":
         # Recherche dans une liste : dans une entree de la forme x#w1#w2# . . . #wl, ou x et les wi sont des mots de {0, 1}∗, s’arreter si x = wi pour un des wi et boucler sinon
         print("\nQuestion 6_2 : Donner des machines de Turing qui r ́ealisent les fonctions suivantes et testez les avec votre simulateur")
         nom_fichier = "MT2.txt"
         mot = "1000#100#10#1000"
-        print(nom_fichier, mot)
+        print("Nom fichier :", nom_fichier)
+        print("Mot :", mot)
+        machine = charge_fichier(nom_fichier) 
+
+        retour = Execution_complete(machine,mot)
+        print(retour)
+
+    if question == "q6_2_refuser":
+        # Recherche dans une liste : dans une entree de la forme x#w1#w2# . . . #wl, ou x et les wi sont des mots de {0, 1}∗, s’arreter si x = wi pour un des wi et boucler sinon
+        print("\nQuestion 6_2 : Donner des machines de Turing qui r ́ealisent les fonctions suivantes et testez les avec votre simulateur")
+        nom_fichier = "MT2.txt"
+        mot = "100#10#1000"
+        print("Nom fichier :", nom_fichier)
+        print("Mot :", mot)
         machine = charge_fichier(nom_fichier) 
 
         retour = Execution_complete(machine,mot)
@@ -115,7 +141,8 @@ def main():
         print("\nQuestion 6_3 : Donner des machines de Turing qui r ́ealisent les fonctions suivantes et testez les avec votre simulateur")        
         nom_fichier = "MT3.txt"
         mot = "11#111"
-        print(nom_fichier, mot)
+        print("Nom fichier :", nom_fichier)
+        print("Mot :", mot)
         machine = charge_fichier(nom_fichier) 
 
         retour = Execution_complete(machine,mot)
@@ -126,14 +153,14 @@ def main():
 
     if question == "q7":
         print("\nQuestion 7 : Donner une fonction qui lit un fichier contenant une la description d’une machine dans le format de Turing Machine Simulator et qui produit le codage d'ecrit precedemment. \nQue faudrait-il faire si on veut pouvoir accepter n’importe quel alphabet de travail ? \n")
-        nom_fichier = "MT1.txt"
+        nom_fichier = "test3_q9.txt"
         print("Code de la machine est :\n")
         code = Codage_Machine(nom_fichier)
         print(f"{code} \n")
 
     if question == "q8_1":
         # On ne peut pas utiliser nos MT de Q6 car elles ont plusieurs rubans. 
-        # Tests avec MT à 1 Ruban : les MT test de la question Q9 (ou fichier palindrome.txt divisible_par_3.txt)
+        # Tests avec MT à 1 Ruban : les MT test de la question Q9
         print("\nQuestion 8_1 : Définir un codage binaire du format de machine de Turing, écrire une fonction qui convertit une description en chaîne en ce codage, puis afficher ce codage, sa version binaire et l’entier correspondant pour les machines données.")
         
         nom_fichier = "test_q9.txt"
@@ -175,18 +202,16 @@ def main():
 
         config_finale = Execution_complete(machine,entree)
 
-        ruban_1 = config_finale.rubans[0]
         ruban_resultat = config_finale.rubans[1]
+        print("Résultat :", "".join(ruban_resultat).strip("_"))
 
-        print("resultat : ",ruban_resultat)
-        print(ruban_1)
 
     if question == "q9_2":
         # Incrémentation binaire
         print("\nQuestion 9_2 : Donner la machine de Turing universelle `a trois rubans, qui prend sur son ruban d’entr ́ee < M > #x et qui simule M sur x. Simuler votre machine universelle sur un exemple de machine < M > de votre choix.")
         nom_fichier_uni = "test2_q9.txt"
         nom_fichier = "MT_question9.txt"
-        x = "1011"
+        x = "100111"
         codage = Codage_Machine(nom_fichier_uni)
 
         entree = codage + "#" + x
@@ -195,13 +220,26 @@ def main():
 
         config_finale = Execution_complete(machine,entree)
 
-        ruban_1 = config_finale.rubans[0]
         ruban_resultat = config_finale.rubans[1]
+        print("Résultat :", "".join(ruban_resultat).strip("_"))
 
-        print(ruban_resultat)
-        print(ruban_1)
 
     if question == "q9_3":
+        # palindrome
+        print("\nQuestion 9_3 : Donner la machine de Turing universelle `a trois rubans, qui prend sur son ruban d’entr ́ee < M > #x et qui simule M sur x. Simuler votre machine universelle sur un exemple de machine < M > de votre choix.")
+        nom_fichier_uni = "test3_q9.txt"
+        nom_fichier = "MT_question9.txt"
+        x = "10001"
+        codage = Codage_Machine(nom_fichier_uni)
+
+        entree = codage + "#" + x
+        print("entree : ", entree)
+        machine = charge_fichier(nom_fichier) 
+
+        config_finale = Execution_complete(machine,entree)
+    
+
+    if question == "q9_3_refuser":
         # palindrome
         print("\nQuestion 9_3 : Donner la machine de Turing universelle `a trois rubans, qui prend sur son ruban d’entr ́ee < M > #x et qui simule M sur x. Simuler votre machine universelle sur un exemple de machine < M > de votre choix.")
         nom_fichier_uni = "test3_q9.txt"
@@ -215,17 +253,13 @@ def main():
 
         config_finale = Execution_complete(machine,entree)
 
-        print("codage : ", codage)
-
-        ruban_resultat = config_finale.rubans[1]
-        print("\nruban_resultat : ", ruban_resultat)
     
 
     if question == "q10":
         print("\nQuestion 10 : Ajouter un ruban et la gestion d’un compteur `a votre machine universelle de fa ̧con `a obtenir une machine qui sur une entr ́ee < M > #x#n simule M sur l’entr ́ee x pendant n  ́etapes")
         nom_fichier_uni = "test3_q9.txt"
         nom_fichier = "MT_question10.txt"
-        x = "01"
+        x = "001"
         codage = Codage_Machine(nom_fichier_uni)
 
         entree = codage + "#" + x + "#" +  "1111"

@@ -140,7 +140,7 @@ def Execution_complete(machine,entrée):
             print("ACCEPTER")
             return machine.configuration
         
-        if machine.configuration.state == "q5":
+        if machine.configuration.state == "q5" and len(machine.configuration.tete) == 4:
             pos4 = machine.configuration.tete[3]
 
             if machine.configuration.rubans[3][pos4] == "1":
@@ -160,9 +160,9 @@ def Configuration_Machine(machine,entrée):
     Configuration_Initiale(machine,entrée)
 
     while True:
-        print(machine.configuration.rubans) 
-        print(machine.configuration.tete) 
-        print(machine.configuration.state) 
+        print("Ruban : ",machine.configuration.rubans) 
+        print("Tête :", machine.configuration.tete) 
+        print("Etat :", machine.configuration.state) 
 
         if machine.configuration.state == machine.F:
             return "ACCEPTER"
@@ -239,6 +239,11 @@ def Codage_Machine(fichier):
 
     return chaine_finale
 
+# Que faudrait-il faire si on veut pouvoir accepter n’importe quel alphabet de travail ? : 
+# on doit utiliser un codage binaire à longueur fixe où chaque symbole est représenté par un bloc de k bits.
+
+
+
 # Question 8
 
 def Codage_Binaire(fichier):
@@ -257,9 +262,12 @@ def Codage_Binaire(fichier):
 
     return codage,chaine_binaire,valeur_entiere
 
+
+
+
+# Initialement, nous pensions devoir créer des fonctions pour répondre aux  questions 9 et 10. On a laissé nos réponses : 
+
 # Question 9
-
-
 def Machine_Turing(entree): # entrée qui aura la forme < M > #x
     """Machine de Turing universelle `a trois rubans, qui prend sur son ruban d’entr ́ee
     < M >#x et qui simule M sur x"""

@@ -1,3 +1,6 @@
+// Input : x#y o`u x et y sont en binaire
+//Output : Comparaison d’entiers : `a partir d’une entr´ee x#y o`u x et y repr´esentent des entiers en binaire,s’arrˆeter si x < y et boucler `a l’infini sinon.
+
 init: q0
 accept: q_accept
 
@@ -37,6 +40,12 @@ q_accept,0,_,-,-
 qleft,1,_
 q_accept,1,_,-,-
 
+qleft,_,0
+loop,_,0,-,-
+
+qleft,_,1
+loop,_,1,-,-
+
 qleft,_,_
 qtest,_,_,>,>
 
@@ -55,8 +64,32 @@ loop,_,_,-,-
 qtest,0,1
 loop,0,1,-,-
 
+
+loop,0,0
+loop,0,0,-,-
+
 loop,0,1
 loop,0,1,-,-
+
+loop,1,0
+loop,1,0,-,-
+
+loop,1,1
+loop,1,1,-,-
+
+loop,0,_
+loop,0,_,-,-
+
+loop,1,_
+loop,1,_,-,-
+
+loop,_,0
+loop,_,0,-,-
+
+loop,_,1
+loop,_,1,-,-
+
+
 
 loop,_,_
 loop,_,_,-,-

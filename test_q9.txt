@@ -1,3 +1,6 @@
+// input : entier en binaire
+// output: remplace la 0 par des 1 et les 1 par des 0
+
 init: q0
 accept: Stop
 
