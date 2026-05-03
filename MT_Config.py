@@ -92,6 +92,8 @@ def Un_pas_de_Calcul(machine):
 
     Symboles_lus_tuple = tuple(Symboles_lus) 
     cle = (Etat_Courant,Symboles_lus_tuple)
+
+    print(f"DEBUG : État={Etat_Courant} | Lus={Symboles_lus_tuple}")
     
     # chercher dans le dictionnaire transitions { ()
     if cle in machine.transitions:
@@ -132,16 +134,13 @@ def Un_pas_de_Calcul(machine):
 def Execution_complete(machine,entrée):
 
     Configuration_Initiale(machine,entrée)
-
     tour = 0
-
-
     while True: 
         if machine.configuration.state == machine.F:
             print("ACCEPTER")
             return machine.configuration
         
-        if machine.configuration.state == "q_compteur":
+        if machine.configuration.state == "q5":
             pos4 = machine.configuration.tete[3]
 
             if machine.configuration.rubans[3][pos4] == "1":

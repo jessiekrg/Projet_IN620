@@ -223,12 +223,12 @@ def main():
 
     if question == "q10":
         print("\nQuestion 10 : Ajouter un ruban et la gestion d’un compteur `a votre machine universelle de fa ̧con `a obtenir une machine qui sur une entr ́ee < M > #x#n simule M sur l’entr ́ee x pendant n  ́etapes")
-        nom_fichier_uni = "test2_q9.txt"
+        nom_fichier_uni = "test3_q9.txt"
         nom_fichier = "MT_question10.txt"
-        x = "0011"
+        x = "01"
         codage = Codage_Machine(nom_fichier_uni)
 
-        entree = codage + "#" + x + "#" +  "11111"
+        entree = codage + "#" + x + "#" +  "1111"
         print("entree : ", entree)
         machine = charge_fichier(nom_fichier) 
 
@@ -237,6 +237,7 @@ def main():
         ruban_resultat = config_finale.rubans[1]
 
         print(ruban_resultat)
+
 
 
     if question == "q11":
