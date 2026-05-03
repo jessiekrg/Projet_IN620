@@ -1,4 +1,4 @@
-all: q1 q2 q3 q4 q5 q6_1 q6_1_refuser q6_2 q6_2_refuser q6_3 q7 q8_1 q8_2 q8_3 q9_1 q9_2 q9_3 q9_3_refuser q10 q11, 
+all: q1 q2 q3 q4 q5 q6_1 q6_1_refuser q6_2 q6_2_refuser q6_3 q7 q8_1 q8_2 q8_3 q9_1 q9_2 q9_3 q9_3_refuser q10 q11
 
 q1:
 	python3 main.py q1
@@ -59,3 +59,6 @@ q10:
 
 q11:
 	python3 main.py q11
+
+zip:
+	zip -r XY_BERROUG_Lina-KAREGA_Jessica.zip XY_BERROUG_Lina-KAREGA_Jessicz

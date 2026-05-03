@@ -93,7 +93,7 @@ def Un_pas_de_Calcul(machine):
     Symboles_lus_tuple = tuple(Symboles_lus) 
     cle = (Etat_Courant,Symboles_lus_tuple)
 
-    print(f"DEBUG : État={Etat_Courant} | Lus={Symboles_lus_tuple}")
+    print(f"État = {Etat_Courant} | Lus = {Symboles_lus_tuple}")
     
     # chercher dans le dictionnaire transitions { ()
     if cle in machine.transitions:
